@@ -14,7 +14,7 @@ firebase.initializeApp(firebaseConfig)
     let db = firebase.firestore()
     //db.collection("turmaA").get()
       //                      .then((snapshot)=>{
-        //                    snapshot.forEach((doc)=>{
+        //                    snapshot.forEach((doc)=>{    //Lendo documentos
           //                  console.log(doc.data())
             //                })
     //})
@@ -24,11 +24,35 @@ firebase.initializeApp(firebaseConfig)
     //console.log(doc.data())
   //})
 
-  db.collection("turmaA").where("nome", "==", "Max Rosa").get()
-  .then(snapshot=>{
-    snapshot.forEach((doc)=>{
-      let aluno = doc.data()
-      console.log(aluno.nome)
-    })
-    
-  })
+  //db.collection("turmaA").where("nome", "==", "Max Rosa").get()
+  //.then(snapshot=>{
+    //snapshot.forEach((doc)=>{                              //Selecionando melhor os documentos
+      //let aluno = doc.data()
+      //console.log(aluno.nome)
+    //})
+  //})
+
+  const TURMA = "turmaA"
+
+  /*db.collection(TURMA).add({
+      nome:"Marcos",
+      notas: {nota1:9.6, nota2:7.5},
+      sobrenome: "Santos"                               //adicionando
+  }).then((doc)=>{
+    console.log("Documento inserido com sucesso:", doc)
+  }).catch(error=>{
+    console.log(error)
+  })*/
+
+
+db.collection(TURMA).doc("AlunoNovo").set(
+  {
+    nome: "Mariana",
+    sobrenome: "Santos",
+    notas:{nota1:7,nota2:5},                           //adicionando e modificando
+  }
+).then((doc)=>{
+  console.log("Documento inserido com sucesso:", doc)
+}).catch(error=>{
+  console.log(error)
+})
