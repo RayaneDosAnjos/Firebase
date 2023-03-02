@@ -78,22 +78,27 @@ auth.createUserWithEmailAndPassword(newUserEmail, newUserPassword)   //Criando u
 })
 }*/
 
-/*function login(){
+function login(){
   let UserEmail = "novoteste@teste.com"
   let UserPassword = "123abc"
 
-  auth.signInWithEmailAndPassword(UserEmail, UserPassword)
-  .then(loggedUser=>{
-    console.log(auth.currentUser)
+  auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)       //Sessão do usuário(Persistencia{LOCAL, SESSION, NONE})
+  .then(()=>{
+
+    auth.signInWithEmailAndPassword(UserEmail, UserPassword)
+      .then(loggedUser => {
+        console.log(auth.currentUser)
+      }).catch(error => {
+        console.log(error)
+      })
   }).catch(error=>{
     console.log(error)
   })
 
-
   
 }
 
-login()*/
+//login()
 
 let user = auth.currentUser
 
@@ -111,9 +116,9 @@ let user = auth.currentUser
   function logout(){
     auth.signOut().then(()=>{
       console.log("Usuário foi deslogado!")
-    })
+    })                                             
     .catch(error=>{
       console.log(error)})
   }
 
-  setTimeout(logout, 2000)
+  setTimeout(login, 2000)
