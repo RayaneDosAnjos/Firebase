@@ -57,11 +57,22 @@ firebase.initializeApp(firebaseConfig)
   console.log(error)
 })*/
 
-db.collection("turmaA").onSnapshot((snapshot) => {
+/*db.collection("turmaA").onSnapshot((snapshot) => {
   snapshot.forEach((doc) => {                            //on Snapshot(atualização em tempo real)
     let aluno = doc.data()   
     console.log(aluno)
   })
-})
+})*/
                             
     
+let newUserEmail = "novoteste@teste.com"
+let newUserPassword = "123abc"
+
+let auth = firebase.auth()
+
+auth.createUserWithEmailAndPassword(newUserEmail, newUserPassword)   //Criando usuários no Firebase
+.then(user=>{
+  console.log(user)
+}).catch(error => {
+  console.log(error)
+})
