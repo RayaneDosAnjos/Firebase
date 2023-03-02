@@ -10,7 +10,6 @@ const firebaseConfig = {
   measurementId: "G-7WBVDT7TD1"
 };
 firebase.initializeApp(firebaseConfig)
-
     let db = firebase.firestore()
     //db.collection("turmaA").get()
       //                      .then((snapshot)=>{
@@ -32,7 +31,7 @@ firebase.initializeApp(firebaseConfig)
     //})
   //})
 
-  const TURMA = "turmaA"
+ // const TURMA = "turmaA"
 
   /*db.collection(TURMA).add({
       nome:"Marcos",
@@ -63,12 +62,10 @@ firebase.initializeApp(firebaseConfig)
     console.log(aluno)
   })
 })*/
-let auth = firebase.auth()                            
+//let auth = firebase.auth()                            
 /*function criarUsuario(){    
 let newUserEmail = "novoteste@teste.com"
 let newUserPassword = "123abc"
-
-
 
 auth.createUserWithEmailAndPassword(newUserEmail, newUserPassword)   //Criando usuários no Firebase
 .then(user=>{
@@ -78,7 +75,7 @@ auth.createUserWithEmailAndPassword(newUserEmail, newUserPassword)   //Criando u
 })
 }*/
 
-function login(){
+/*function login(){
   let UserEmail = "novoteste@teste.com"
   let UserPassword = "123abc"
 
@@ -94,31 +91,46 @@ function login(){
   }).catch(error=>{
     console.log(error)
   })
-
-  
-}
-
+}*/
 //login()
-
-let user = auth.currentUser
-
-
-
+/*let user = auth.currentUser
   auth.onAuthStateChanged(user=>{
     if(user){
       console.log(user)
     }else{
       console.log("Ninguém logado!")
     }
-  })
+  })*/
 
-
-  function logout(){
+  /*function logout(){
     auth.signOut().then(()=>{
       console.log("Usuário foi deslogado!")
     })                                             
     .catch(error=>{
       console.log(error)})
   }
+  setTimeout(login, 2000)*/
 
-  setTimeout(login, 2000)
+  function ler(){
+    db.collection("lista").get()
+    .then(snapshot=>{
+      snapshot.forEach(item=>{
+        console.log(item.data())
+      })
+    }).catch(error=>{
+      console.log(error)
+    })
+  }
+
+  function escrever(){
+    db.collection("lista")
+    .add({title:"novo objeto", numero: Math.random()})
+    .then(doc=>{
+      console.log(doc)
+    }).catch(error=>{
+      console.log(error)
+    })
+  }
+
+  escrever()
+  ler()
