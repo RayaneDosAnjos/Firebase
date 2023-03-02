@@ -45,7 +45,7 @@ firebase.initializeApp(firebaseConfig)
   })*/
 
 
-db.collection(TURMA).doc("AlunoNovo").set(
+/*db.collection(TURMA).doc("AlunoNovo").set(
   {
     nome: "Mariana",
     sobrenome: "Santos",
@@ -55,4 +55,13 @@ db.collection(TURMA).doc("AlunoNovo").set(
   console.log("Documento inserido com sucesso:", doc)
 }).catch(error=>{
   console.log(error)
+})*/
+
+db.collection("turmaA").onSnapshot((snapshot) => {
+  snapshot.forEach((doc) => {                            //on Snapshot(atualização em tempo real)
+    let aluno = doc.data()   
+    console.log(aluno)
+  })
 })
+                            
+    
